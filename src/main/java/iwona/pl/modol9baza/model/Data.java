@@ -21,7 +21,7 @@ public class Data {
     @Column(name = "ip_address")
     private String ipAddress;
 
-    public Data(String firstName, String lastName, String email, String gender, String ipAddress) {
+    public Data( String firstName, String lastName, String email, String gender, String ipAddress) {
 //        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -30,7 +30,10 @@ public class DataService {
         dataList = new ArrayList<>();
     }
 
-    public void read() {
+    @AroundCheckTime
+    @BeforeCheckTime
+    @AfterCheckTime
+    public void read() {  // h2 0.007  mysql = 0.008
         try {
             BufferedReader read = new BufferedReader(new FileReader(PATH));
             String nextLine = null;
@@ -38,15 +41,15 @@ public class DataService {
             while ((nextLine = read.readLine()) != null) {
 
                 String[] data1 = nextLine.split(",");
-                Data data = new Data(
+//                Data data = new Data(
 //                        Long.parseLong(data1[0]),
-                        data1[1],
-                        data1[2],
-                        data1[3],
-                        data1[4],
-                        data1[5]);
-                dataList.add(data);
-//                System.out.println(dataList);
+//                        data1[1],
+//                        data1[2],
+//                        data1[3],
+//                        data1[4],
+//                        data1[5]);
+//                dataList.add(data);
+                dataList.add(saveToBd(data1));
                 lines++;
             }
         } catch (IOException e) {
@@ -54,21 +57,38 @@ public class DataService {
         }
     }
 
+    @AroundCheckTime
+    @BeforeCheckTime
+    @AfterCheckTime
+    public Data saveToBd(String[] CsvData) {
+        Data data = new Data();
+//        data.setId(CsvData[0]);
+        data.setFirstName(CsvData[1]);
+        data.setLastName(CsvData[2]);
+        data.setEmail(CsvData[3]);
+        data.setGender(CsvData[4]);
+        data.setIpAddress(CsvData[5]);
+        return data;
+    }
 
-    public void saveInDb() {
-        for (int i = 0; i < dataList.size(); i++) {
-            dataList.get(i).getId();
-            dataList.get(i).getFirstName();
-            dataList.get(i).getLastName();
-            dataList.get(i).getEmail();
-            dataList.get(i).getGender();
-            dataList.get(i).getIpAddress();
+    public List<Data> getDataList() {
+        return dataList;
+    }
 
-        }
+    @AroundCheckTime
+    @BeforeCheckTime
+    @AfterCheckTime
+    public void saveAll(List<Data> dataList){ // my sql 73.847 // h2 0.288  mysql 73.29
         dataRepo.saveAll(dataList);
     }
 
-    public List<Data> find(){
+//    public void saveAll(){
+//        dataRepo.saveAll(dataList);
+
+    @AroundCheckTime
+    @BeforeCheckTime
+    @AfterCheckTime
+    public List<Data> find() { // h2 0.127 mysql //0.768, 0.717
         return dataRepo.findAll();
     }
 }

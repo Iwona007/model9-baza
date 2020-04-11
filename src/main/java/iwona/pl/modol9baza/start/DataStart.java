@@ -11,21 +11,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataStart {
 
-
     private DataService dataService;
 
     public DataStart(DataService dataService) {
         this.dataService = dataService;
     }
 
-    @BeforeCheckTime
-    @AfterCheckTime
-    @AroundCheckTime
     @EventListener(ApplicationReadyEvent.class)
     public void read(){
         dataService.read();
-        dataService.saveInDb();
-//        dataService.find();
+        dataService.saveAll(dataService.getDataList());
+        dataService.find();
     }
 
 
