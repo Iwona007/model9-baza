@@ -31,9 +31,9 @@ public class DataService {
     }
 
     @AroundCheckTime
-    @BeforeCheckTime
-    @AfterCheckTime
-    public void read() {  // h2 0.007  mysql = 0.008
+//    @BeforeCheckTime
+//    @AfterCheckTime
+    public void read() {
         try {
             BufferedReader read = new BufferedReader(new FileReader(PATH));
             String nextLine = null;
@@ -57,9 +57,6 @@ public class DataService {
         }
     }
 
-    @AroundCheckTime
-    @BeforeCheckTime
-    @AfterCheckTime
     public Data saveToBd(String[] CsvData) {
         Data data = new Data();
 //        data.setId(CsvData[0]);
@@ -76,9 +73,9 @@ public class DataService {
     }
 
     @AroundCheckTime
-    @BeforeCheckTime
-    @AfterCheckTime
-    public void saveAll(List<Data> dataList){ // my sql 73.847 // h2 0.288  mysql 73.29
+//    @BeforeCheckTime
+//    @AfterCheckTime
+    public void saveAll(List<Data> dataList){
         dataRepo.saveAll(dataList);
     }
 
@@ -86,9 +83,9 @@ public class DataService {
 //        dataRepo.saveAll(dataList);
 
     @AroundCheckTime
-    @BeforeCheckTime
-    @AfterCheckTime
-    public List<Data> find() { // h2 0.127 mysql //0.768, 0.717
+//    @BeforeCheckTime
+//    @AfterCheckTime
+    public List<Data> find() {
         return dataRepo.findAll();
     }
 }
