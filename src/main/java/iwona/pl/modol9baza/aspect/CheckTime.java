@@ -24,7 +24,7 @@ public class CheckTime {
     @After("@annotation(AfterCheckTime)")
     public void afterStart() {
         double duration = (System.currentTimeMillis() - startTime)/1000;
-        System.out.println("Czas wczytywania danyc do DB H2: " + duration);
+        System.out.println("Czas wczytywania danych: " + duration);
     }
 
     @Around("@annotation(AroundCheckTime)")
@@ -32,7 +32,7 @@ public class CheckTime {
         startTime = System.currentTimeMillis();
         joinPoint.proceed();
         double duration = (System.currentTimeMillis() - startTime)/1000;
-        System.out.println("Czas wczytania danych do DB: " +duration);
+        System.out.println("Czas wczytania danych: " +duration);
     }
 
 }
