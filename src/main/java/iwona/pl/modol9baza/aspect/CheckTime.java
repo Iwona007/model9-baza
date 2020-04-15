@@ -16,23 +16,23 @@ public class CheckTime {
     private double startTime;
 
     @Before("@annotation(BeforeCheckTime)")
-    public void beforeStart() {
+    private void beforeStart() {
         startTime = System.currentTimeMillis();
         System.out.println("Start: ");
     }
 
     @After("@annotation(AfterCheckTime)")
-    public void afterStart() {
-        double duration = (System.currentTimeMillis() - startTime)/1000;
+    private void afterStart() {
+        double duration = (System.currentTimeMillis() - startTime) / 1000;
         System.out.println("Czas wczytywania danych: " + duration);
     }
 
     @Around("@annotation(AroundCheckTime)")
-    public void aroundStart(ProceedingJoinPoint joinPoint) throws Throwable {
+    private void aroundStart(ProceedingJoinPoint joinPoint) throws Throwable {
         startTime = System.currentTimeMillis();
         joinPoint.proceed();
-        double duration = (System.currentTimeMillis() - startTime)/1000;
-        System.out.println("Czas wczytania danych: " +duration);
+        double duration = (System.currentTimeMillis() - startTime) / 1000;
+        System.out.println("Czas wczytania danych: " + duration);
     }
 
 }
