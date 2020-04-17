@@ -1,20 +1,14 @@
 package iwona.pl.modol9baza.service;
 
-import iwona.pl.modol9baza.aspect.AfterCheckTime;
 import iwona.pl.modol9baza.aspect.AroundCheckTime;
-import iwona.pl.modol9baza.aspect.BeforeCheckTime;
 import iwona.pl.modol9baza.model.Data;
 import iwona.pl.modol9baza.repository.DataRepo;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,16 +24,13 @@ public class DataService {
         dataList = new ArrayList<>();
     }
 
+
     @AroundCheckTime
-//    @BeforeCheckTime
-//    @AfterCheckTime
     public void read() {
-        try {
-            BufferedReader read = new BufferedReader(new FileReader(PATH));
+        try (BufferedReader reader = new BufferedReader(new FileReader(PATH))) {
             String nextLine = null;
             int lines = 0;
-            while ((nextLine = read.readLine()) != null) {
-
+            while ((nextLine = reader.readLine()) != null) {
                 String[] data1 = nextLine.split(",");
                 Data data = new Data(
 //                        Long.parseLong(data1[0]),
@@ -57,6 +48,7 @@ public class DataService {
         }
     }
 
+    //to check time between different methods
 //    public Data saveToBd(String[] CsvData) {
 //        Data data = new Data();
 ////        data.setId(CsvData[0]);
@@ -73,9 +65,7 @@ public class DataService {
     }
 
     @AroundCheckTime
-//    @BeforeCheckTime
-//    @AfterCheckTime
-    public void saveAll(List<Data> dataList){
+    public void saveAll(List<Data> dataList) {
         dataRepo.saveAll(dataList);
     }
 
@@ -83,8 +73,6 @@ public class DataService {
 //        dataRepo.saveAll(dataList);
 
     @AroundCheckTime
-//    @BeforeCheckTime
-//    @AfterCheckTime
     public List<Data> find() {
         return dataRepo.findAll();
     }
