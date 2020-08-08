@@ -8,7 +8,8 @@ Zrób to samo dla operacji wczytywania danych z bazy danych (bez wyświetlania i
 Zrealizuj to dla relacyjnej bazy danych i nierelacyjnej bazy danych. 
 Porównaj wyniki, napisz wnioski, podziel się nimi na grupie – zobaczymy komu co udało się osiągnąć.
 
-Tehnology:
+Technology:
 Java 1.8
+Spring Boot
 JPA & Hibernate 
-Data Base: remote MySql and H2
+SQL: remote MySql and H2
