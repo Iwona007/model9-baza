@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CheckTime {
 
-
     private double startTime;
 
     @Before("@annotation(BeforeCheckTime)")
@@ -34,5 +33,4 @@ public class CheckTime {
         double duration = (System.currentTimeMillis() - startTime) / 1000;
         System.out.println("Czas wczytania danych: " + duration);
     }
-
 }

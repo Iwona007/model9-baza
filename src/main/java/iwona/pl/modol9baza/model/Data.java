@@ -1,13 +1,10 @@
 package iwona.pl.modol9baza.model;
 
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "data")
 public class Data {
-    //id,first_name,last_name,email,gender,ip_address
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

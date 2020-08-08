@@ -7,3 +7,8 @@ Zrób to samo dla operacji wczytywania danych z bazy danych (bez wyświetlania i
  bo to może spowodować przekłamanie wyniku). Odnotuj wynik odczytu.
 Zrealizuj to dla relacyjnej bazy danych i nierelacyjnej bazy danych. 
 Porównaj wyniki, napisz wnioski, podziel się nimi na grupie – zobaczymy komu co udało się osiągnąć.
+
+Tehnology:
+Java 1.8
+JPA & Hibernate 
+Data Base: remote MySql and H2

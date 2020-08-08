@@ -30,35 +30,22 @@ public class DataService {
         try (BufferedReader reader = new BufferedReader(new FileReader(PATH))) {
             String nextLine = null;
             int lines = 0;
+            reader.readLine();// dzielki temu moijam nagłowek
             while ((nextLine = reader.readLine()) != null) {
                 String[] data1 = nextLine.split(",");
                 Data data = new Data(
-//                        Long.parseLong(data1[0]),
                         data1[1],
                         data1[2],
                         data1[3],
                         data1[4],
                         data1[5]);
                 dataList.add(data);
-//                dataList.add(saveToBd(data1));
                 lines++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    //to check time between different methods
-//    public Data saveToBd(String[] CsvData) {
-//        Data data = new Data();
-////        data.setId(CsvData[0]);
-//        data.setFirstName(CsvData[1]);
-//        data.setLastName(CsvData[2]);
-//        data.setEmail(CsvData[3]);
-//        data.setGender(CsvData[4]);
-//        data.setIpAddress(CsvData[5]);
-//        return data;
-//    }
 
     public List<Data> getDataList() {
         return dataList;

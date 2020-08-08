@@ -1,8 +1,5 @@
 package iwona.pl.modol9baza.start;
 
-import iwona.pl.modol9baza.aspect.AfterCheckTime;
-import iwona.pl.modol9baza.aspect.AroundCheckTime;
-import iwona.pl.modol9baza.aspect.BeforeCheckTime;
 import iwona.pl.modol9baza.service.DataService;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
